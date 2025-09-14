@@ -10,16 +10,26 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        Scanner scanner = new Scanner(System.in);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        String input = scanner.nextLine();
+        int[] arr = new int[26];
 
-        for(int i='a';i<='z';i++) {
-            System.out.print(input.indexOf(i) + " ");
+        for(int i=0;i<arr.length;i++) {
+            arr[i] = -1;
         }
 
+        String input = br.readLine();
 
+        for(int i=0;i<input.length();i++) {
+            char ch = input.charAt(i);
+            if(arr[ch-'a']==-1) {
+                arr[ch-'a'] = i;
+            }
+        }
 
+        for(int val : arr) {
+            System.out.print(val + " ");
+        }
 
     }
 }
