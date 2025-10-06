@@ -33,19 +33,18 @@ public class Main {
             }
         }
 
-        int[][] sumArray = new int[N][M];
+        StringBuilder sb = new StringBuilder();
         for(int i=0;i<N;i++) {
             for(int j=0;j<M;j++) {
-                sumArray[i][j] = A[i][j] + B[i][j];
+                sb.append(A[i][j] + B[i][j]);
+                if(j+1<M) {
+                    sb.append(" ");
+                }
             }
+            sb.append("\n");
         }
 
-        for(int i=0;i<N;i++) {
-            for(int j=0;j<M;j++) {
-                System.out.print(sumArray[i][j] + " ");
-            }
-            System.out.println();
-        }
+        System.out.print(sb);
     }
 }
 
