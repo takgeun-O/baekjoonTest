@@ -20,47 +20,20 @@ public class Main {
         // 60466175 36
         // ZZZZZ
 
-        int temp = N;
-        int mod = 0;
+        if (N == 0) {
+            System.out.println(0);
+            return;
+        }
+
         StringBuilder sb = new StringBuilder();
-        while(true) {
-            if(temp == 0) {
-                break;
-            }
-            mod = temp % B;
-            sb.append(mod).append(" ");
-            temp = temp / B;
+        while (N > 0) {
+            int r = N % B;
+            char c = r < 10 ? (char)('0'+r) : (char) ('A'+(r-10));
+            sb.append(c);
+            N = N / B;
         }
 
-//        System.out.println(sb);
-
-        String[] arr = sb.toString().split(" ");
-        String[] arrReverse = new String[arr.length];
-        for(int i=0;i<arr.length;i++) {
-            arrReverse[i] = arr[arr.length-i-1];
-        }
-
-//        for (String s : arrReverse) {
-//            System.out.print(s);
-//        }
-
-        Map<String,String> map = new HashMap<>();
-        for(int i=0;i<26;i++) {
-            String key = String.valueOf(10+i);
-            String value = String.valueOf((char)('A'+i));
-            map.put(key, value);
-        }
-
-        StringBuilder result = new StringBuilder();
-        for (String s : arrReverse) {
-            if(map.containsKey(s)) {
-                result.append(map.get(s));
-            } else {
-                result.append(s);
-            }
-        }
-
-        System.out.println(result);
+        System.out.println(sb.reverse());
     }
 }
 
