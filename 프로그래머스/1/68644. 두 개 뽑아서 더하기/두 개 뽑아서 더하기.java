@@ -1,25 +1,24 @@
 import java.util.*;
+import java.io.*;
+
 class Solution {
     public int[] solution(int[] numbers) {
-        int[] clone = numbers.clone();
+        Set<Integer> set = new HashSet<>();
+        int[] result = {0,};
         
-        HashSet<Integer> set = new HashSet<>();
-        
-        for(int i=0;i<clone.length;i++) {
-            for(int j=i+1;j<clone.length;j++) {
-                int sum = clone[i] + clone[j];
-                set.add(sum);
+        for(int i=0;i<numbers.length;i++) {
+            for(int j=i+1;j<numbers.length;j++) {
+                set.add(numbers[i] + numbers[j]);
             }
         }
         
-        int i = 0;
-        int[] answer = new int[set.size()];
-        for(Integer num : set) {
-            answer[i++] = num;
-        }
+        // System.out.println(set);
         
-        return Arrays.stream(answer)
+        result = set.stream()
+            .mapToInt(Integer::intValue)
             .sorted()
             .toArray();
+        
+        return result;
     }
 }
