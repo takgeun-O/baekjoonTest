@@ -17,12 +17,14 @@ class Solution {
     
     private static ArrayList<Integer>[] tree;
     
+    
     private static void buildTree(int[] info, int[][] edges) {
         tree = new ArrayList[info.length];
         for(int i=0;i<tree.length;i++) {
             tree[i] = new ArrayList<>();
         }
         
+        // [[0,1],[1,2],[1,4],[0,8],[8,7],[9,10],[9,11],[4,3],[6,5],[4,6],[8,9]]
         for(int[] edge : edges) {
             tree[edge[0]].add(edge[1]);
         }
@@ -45,21 +47,27 @@ class Solution {
             // 방문한 노드 집합에 현재 노드의 이웃 노드 추가
             // System.out.println(tree[now.node]);
             now.visited.addAll(tree[now.node]);
-            
+            System.out.println("now.visited: " + now.visited);
             for(int next : now.visited) {
-                // now.visited -> [1, 2] 인접노드
+                // now.visited -> [1, 8] 인접노드
                 // 기존 해시셋의 데이터를 복사하고 현재 방문한 정점을 해시셋에서 제거
                 HashSet<Integer> set = new HashSet<>(now.visited);
                 set.remove(next);
                 
+                // System.out.println("set: " + set);
+                // System.out.println("next: " + next);
+                // System.out.println("now.sheep: " + now.sheep + " / now.wolf: " + now.wolf);
+                
+                // 늑대일 때
                 if(info[next] == 1) {
-                    if(now.sheep != now.wolf + 1) {
+                    if(now.sheep > now.wolf + 1) {
                         queue.add(new Info(next, now.sheep, now.wolf + 1, set));
                     }
                 } else {
                     queue.add(new Info(next, now.sheep + 1, now.wolf, set));
                 }
             }
+            // System.out.println("-------------------------------");
         }
         return answer;
     }
