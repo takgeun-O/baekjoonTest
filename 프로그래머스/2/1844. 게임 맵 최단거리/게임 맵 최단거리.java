@@ -12,13 +12,13 @@ class Solution {
             return -1;
         }
         
-        int[][] dist = new int[rows][cols];     // 방문했는지 체크하는 배열
+        int[][] dist = new int[rows][cols];     // visited + 거리 저장
         dist[0][0] = 1;
         
         // 오른쪽, 아래, 위, 왼쪽 순서로 이동
-        // {dy, dx}
-        int[] dx = {0, 1, -1, 0};
-        int[] dy = {1, 0, 0, -1};
+        // {dx, dy}
+        int[] dx = {1, 0, 0, -1};
+        int[] dy = {0, 1, -1, 0};
         
         Queue<int[]> q = new ArrayDeque<>();
         q.add(new int[]{0, 0});
