@@ -1,28 +1,25 @@
 class Solution {
     
-    public static boolean[] visited;
-    public static int[][] computer;
+    private static boolean[] visited;
     
-    public static void dfs(int now) {
+    public static void dfs(int now, int[][] computers) {
         visited[now] = true;
         
-        for(int i=0;i<computer[now].length;i++) {
-            if(!visited[i] && computer[now][i]==1) {
-                dfs(i);
+        for(int i=0;i<computers[now].length;i++) {
+            if(!visited[i] && computers[now][i] == 1) {
+                dfs(i, computers);
             }
         }
     }
     
     public int solution(int n, int[][] computers) {
-        int answer = 0;
-        computer = computers;
+        
         visited = new boolean[n];
+        int answer = 0;
         
         for(int i=0;i<n;i++) {
-            
-            // 해당 노드가 방문하지 않은 노드면 해당 노드를 시작으로 깊이우선탐색 진행
             if(!visited[i]) {
-                dfs(i);
+                dfs(i, computers);
                 answer++;
             }
         }
