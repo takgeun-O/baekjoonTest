@@ -6,24 +6,21 @@ class Solution {
     
     public int solution(int n, int[][] wires) {
         
-        int answer = Integer.MAX_VALUE;
-        
         adjList = new ArrayList[n + 1];
         for(int i=1;i<=n;i++) {
             adjList[i] = new ArrayList<>();
         }
+        
         for(int[] edge : wires) {
             adjList[edge[0]].add(edge[1]);
             adjList[edge[1]].add(edge[0]);
         }
         
-        // 전선 하나씩 제거
+        int answer = Integer.MAX_VALUE;
         for(int[] cut : wires) {
             visited = new boolean[n + 1];
             
-            // dfs(next, cutA, cutB)
             int count = dfs(cut[0], cut[0], cut[1]);
-            
             int diff = Math.abs(count - (n - count));
             answer = Math.min(answer, diff);
         }
@@ -33,14 +30,12 @@ class Solution {
     
     private int dfs(int now, int cutA, int cutB) {
         visited[now] = true;
-        int sum = 1;
+        int sum = 1;        // now를 루트노드로 한 전체 노드 개수 (자기자신 + 자식노드)
         
         for(int next : adjList[now]) {
-            // 끊은 간선이면 건너뛴다.
-            if((now == cutA) && (next == cutB)) {
-                continue;
-            }
-            if((now == cutB) && (next == cutA)) {
+            
+            // 예외 처리
+            if((now == cutA && next == cutB) || (now == cutB && next == cutA)) {
                 continue;
             }
             
@@ -48,7 +43,6 @@ class Solution {
                 sum = sum + dfs(next, cutA, cutB);
             }
         }
-        
         return sum;
     }
 }
