@@ -10,7 +10,6 @@ class Solution {
         for(int i=1;i<=n;i++) {
             adjList[i] = new ArrayList<>();
         }
-        
         for(int[] edge : wires) {
             adjList[edge[0]].add(edge[1]);
             adjList[edge[1]].add(edge[0]);
@@ -30,11 +29,11 @@ class Solution {
     
     private int dfs(int now, int cutA, int cutB) {
         visited[now] = true;
-        int sum = 1;        // now를 루트노드로 한 전체 노드 개수 (자기자신 + 자식노드)
+        int sum = 1;
         
+        // 인접리스트
         for(int next : adjList[now]) {
             
-            // 예외 처리
             if((now == cutA && next == cutB) || (now == cutB && next == cutA)) {
                 continue;
             }
