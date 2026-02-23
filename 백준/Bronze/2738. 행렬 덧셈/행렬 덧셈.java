@@ -1,51 +1,38 @@
-
-
-import java.io.*;
+import java.io.IOException;
 import java.util.*;
 
 public class Main {
+
     public static void main(String[] args) throws IOException {
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-
+        Scanner sc = new Scanner(System.in);
         int N, M;
 
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
+        N = sc.nextInt();
+        M = sc.nextInt();
 
-        int[][] A = new int[N][M];
-        int[][] B = new int[N][M];
+        int[][] arrA = new int[N][M];
+        int[][] arrB = new int[N][M];
 
-        // 행렬A
         for(int i=0;i<N;i++) {
-            st = new StringTokenizer(br.readLine());
             for(int j=0;j<M;j++) {
-                A[i][j] = Integer.parseInt(st.nextToken());
+                arrA[i][j] = sc.nextInt();
             }
         }
 
-        // 행렬B
+        int[][] sumArr = new int[N][M];
         for(int i=0;i<N;i++) {
-            st = new StringTokenizer(br.readLine());
             for(int j=0;j<M;j++) {
-                B[i][j] = Integer.parseInt(st.nextToken());
+                arrB[i][j] = sc.nextInt();
+                sumArr[i][j] = arrA[i][j] + arrB[i][j];
             }
         }
 
-        StringBuilder sb = new StringBuilder();
         for(int i=0;i<N;i++) {
             for(int j=0;j<M;j++) {
-                sb.append(A[i][j] + B[i][j]);
-                if(j+1<M) {
-                    sb.append(" ");
-                }
+                System.out.print(sumArr[i][j] + " ");
             }
-            sb.append("\n");
+            System.out.println();
         }
-
-        System.out.print(sb);
     }
 }
-
-
