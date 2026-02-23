@@ -1,17 +1,16 @@
-
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
 
-        String input = scanner.nextLine();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.println(input.length());
+        String s = br.readLine();
+
+        System.out.println(s.length());
     }
 }
