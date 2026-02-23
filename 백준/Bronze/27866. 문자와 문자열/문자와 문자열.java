@@ -1,20 +1,17 @@
-
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        String st = br.readLine();
-        int n = Integer.parseInt(br.readLine())-1;
+        String S = br.readLine();
+        int i = Integer.parseInt(br.readLine());
 
-        br.close();
-
-        System.out.println(st.charAt(n));
+        System.out.println(S.charAt(i-1));
     }
 }
