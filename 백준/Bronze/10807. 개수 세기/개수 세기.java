@@ -10,18 +10,13 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int N = Integer.parseInt(br.readLine());
-        int[] arr = new int[N];
-
-        String arrString = br.readLine();
-        String[] line = arrString.split("\\s+");
-        for(int i=0;i<N;i++) {
-            arr[i] = Integer.parseInt(line[i]);
-        }
+        StringTokenizer st = new StringTokenizer(br.readLine());
         int v = Integer.parseInt(br.readLine());
 
         int count = 0;
+
         for(int i=0;i<N;i++) {
-            if(arr[i] == v) {
+            if(Integer.parseInt(st.nextToken()) == v) {
                 count++;
             }
         }
