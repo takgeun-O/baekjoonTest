@@ -1,23 +1,31 @@
-
-
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
-        int[] students = new int[30];
-        int studentNumber = 0;
+    public static void main(String[] args) throws IOException {
 
-        for(int i=0;i<28;i++) {
-            studentNumber = scanner.nextInt();        // 과제 제출자 번호
-            students[studentNumber-1] = 1;            // 과제 제출한 애는 1 넣기
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < 28; i++) {
+            int x = Integer.parseInt(br.readLine());
+            pq.add(x);
         }
 
-        for(int i=0;i<30;i++) {
-            if(students[i]==0) {
-                System.out.println(i+1);
+//        while(!pq.isEmpty()) {
+//            System.out.println(pq.poll());
+//        }
+
+        for(int i=1;i<=30;i++) {
+            if(!pq.contains(i)) {
+                sb.append(i).append("\n");
             }
         }
+
+        System.out.println(sb);
     }
 }
