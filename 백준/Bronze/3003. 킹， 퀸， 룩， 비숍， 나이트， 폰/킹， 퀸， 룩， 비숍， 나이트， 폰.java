@@ -1,35 +1,34 @@
-
-
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
 
+        int[] correct = {1, 1, 2, 2, 2, 8};
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        String line = br.readLine();
+        StringTokenizer st = new StringTokenizer(line);
+        StringBuilder sb = new StringBuilder();
 
-        int[] correctArr = {1, 1, 2, 2, 2, 8};
-        int[] arr = new int[6];
-        int index = 0;
-
-        while(st.hasMoreElements()) {
-            arr[index++] = Integer.parseInt(st.nextToken());
+        int[] given = new int[6];
+        int i = 0;
+        while(st.hasMoreTokens()) {
+            given[i++] = Integer.parseInt(st.nextToken());
         }
 
-        int[] result = new int[6];
-
-        for(int i=0;i<6;i++) {
-            result[i] = correctArr[i] - arr[i];
+        int[] answer = new int[6];
+        for(int index=0;index<correct.length;index++) {
+            answer[index] = correct[index] - given[index];
         }
 
-        for(int value : result) {
-            System.out.print(value + " ");
+        for(int index=0;index<6;index++) {
+            sb.append(answer[index]).append(" ");
         }
 
+        System.out.println(sb);
     }
 }
