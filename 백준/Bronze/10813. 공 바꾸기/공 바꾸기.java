@@ -1,33 +1,39 @@
-
-
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
-        int N = scanner.nextInt();          // 바구니 개수
-        int M = scanner.nextInt();          // 공 바꿀 횟수
+    public static void main(String[] args) throws IOException {
 
-        int i, j;
-        int[] basket = new int[N];
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder();
 
-        for(int idx=0;idx<N;idx++) {
-            basket[idx] = idx+1;            // 바구니번호와 같은 번호의 공
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+
+        int[] bucket = new int[N + 1];
+        for (int i = 1; i < N + 1; i++) {
+            bucket[i] = i;
         }
 
         int temp = 0;
-        for(int count=0;count<M;count++) {
-            i = scanner.nextInt();
-            j = scanner.nextInt();
+        for (int c = 0; c < M; c++) {
+            st = new StringTokenizer(br.readLine());
+            int i = Integer.parseInt(st.nextToken());
+            int j = Integer.parseInt(st.nextToken());
 
-            temp = basket[i-1];
-            basket[i-1] = basket[j-1];
-            basket[j-1] = temp;
+            temp = bucket[i];
+            bucket[i] = bucket[j];
+            bucket[j] = temp;
         }
 
-        for(int idx=0;idx<N;idx++) {
-            System.out.print(basket[idx] + " ");
+        for (int i = 1; i < N + 1; i++) {
+            sb.append(bucket[i]).append(" ");
         }
+
+        System.out.println(sb);
     }
 }
