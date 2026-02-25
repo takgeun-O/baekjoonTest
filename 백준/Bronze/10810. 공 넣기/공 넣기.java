@@ -1,33 +1,40 @@
-
-
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
-        int N = scanner.nextInt();      // 바구니 수
-        int M = scanner.nextInt();      // 공 넣는 횟수
+    public static void main(String[] args) throws IOException {
 
-        int[] basketArr = new int[N];
-        int i,j,k;
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
 
-        for(int count=0;count<M;count++) {
-            i = scanner.nextInt();
-            j = scanner.nextInt();
-            k = scanner.nextInt();
+        String line = br.readLine();
+        StringTokenizer st = new StringTokenizer(line);
 
-            for(int idx=i;idx<=j;idx++) {
-                basketArr[idx-1] = k;
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+
+        int[] bucket = new int[N];
+        for (int a = 0; a < M; a++) {
+            line = br.readLine();
+            st = new StringTokenizer(line);
+
+            int i = Integer.parseInt(st.nextToken());
+            int j = Integer.parseInt(st.nextToken());
+            int k = Integer.parseInt(st.nextToken());
+
+//            System.out.println(i + " " + j + " " + k);
+            for (int b = i - 1; b <= j - 1; b++) {
+                bucket[b] = k;
             }
-
-//            for(int idx=0;idx<N;idx++) {
-//                System.out.print(basketArr[idx] + " ");
-//            }
         }
 
-        for(int idx=0;idx<N;idx++) {
-            System.out.print(basketArr[idx] + " ");
+        for(int i=0;i<N;i++) {
+            sb.append(bucket[i]).append(" ");
         }
+
+        System.out.println(sb);
     }
 }
