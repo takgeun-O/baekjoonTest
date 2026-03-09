@@ -17,22 +17,12 @@ public class Main {
             arr[i] = Integer.parseInt(br.readLine());
         }
 
-        for (int i = 0; i < N; i++) {
-            int min = arr[i];
-            int index = i;
-            for (int j = i; j < N; j++) {
-                if(min > arr[j]) {
-                    min = arr[j];
-                    index = j;
-                }
-            }
-            int temp = arr[i];
-            arr[i] = arr[index];
-            arr[index] = temp;
-        }
+        Arrays.sort(arr);
 
         for(int i=0;i<N;i++) {
-            System.out.println(arr[i]);
+            sb.append(arr[i]).append('\n');
         }
+
+        System.out.println(sb);
     }
 }
